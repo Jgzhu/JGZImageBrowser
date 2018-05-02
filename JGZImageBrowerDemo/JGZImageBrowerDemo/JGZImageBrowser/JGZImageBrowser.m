@@ -47,7 +47,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 -(void)show{
     self.ImageBrowserView.CurrentIndex=self.CurrentIndex;
     JGZImageBrowserModel *model=self.LocalImageArray[self.CurrentIndex];

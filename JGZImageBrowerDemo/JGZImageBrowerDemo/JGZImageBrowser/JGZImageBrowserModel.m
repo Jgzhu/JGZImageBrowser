@@ -8,6 +8,12 @@
 
 #import "JGZImageBrowserModel.h"
 
+
+
+@interface JGZImageBrowserModel()
+
+@end
+
 @implementation JGZImageBrowserModel
 -(void)setImageWithImageName:(NSString *)imageName fileType:(NSString *)type{
     self.image=JGZ_LOADIMAGE_FROMFILE(imageName, type);
