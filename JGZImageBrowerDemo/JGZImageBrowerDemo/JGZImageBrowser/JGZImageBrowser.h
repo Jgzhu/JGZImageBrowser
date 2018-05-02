@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JGZImageBrowserModel.h"
 @interface JGZImageBrowser : UIViewController
+@property (nonatomic,strong)NSArray *LocalImageArray;
+@property (nonatomic,assign)NSInteger CurrentIndex;
 -(void)show;
 -(void)hiden;
 @end

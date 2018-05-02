@@ -8,11 +8,11 @@
 
 #import "JGZImageBrowserView.h"
 #import "JGZImageBrowserViewCell.h"
-
+#import "JGZImageBrowserModel.h"
 static NSString *const JGZImageBrowserViewCellIdentifier=@"JGZImageBrowserViewCellIdentifier";
 
 
-@interface JGZImageBrowserView()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface JGZImageBrowserView()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,JGZImageBrowserViewCellDelegate>
 
 @end
 
@@ -20,7 +20,7 @@ static NSString *const JGZImageBrowserViewCellIdentifier=@"JGZImageBrowserViewCe
 
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout{
     if (self=[super initWithFrame:frame collectionViewLayout:layout]) {
-        self.backgroundColor=[UIColor cyanColor];
+        self.backgroundColor=[UIColor clearColor];
         self.frame=[UIScreen mainScreen].bounds;
         self.userInteractionEnabled=YES;
         [self registerClass:JGZImageBrowserViewCell.class forCellWithReuseIdentifier:JGZImageBrowserViewCellIdentifier];
@@ -45,9 +45,28 @@ static NSString *const JGZImageBrowserViewCellIdentifier=@"JGZImageBrowserViewCe
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JGZImageBrowserViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:JGZImageBrowserViewCellIdentifier forIndexPath:indexPath];
     [cell resetUI];
-    cell.imageview.image=[UIImage imageNamed:[NSString stringWithFormat:@"localImage%ld.jpeg",(long)indexPath.item]];
-    cell.backgroundColor=[UIColor colorWithRed:arc4random()%250/255.0 green:arc4random()%250/255.0 blue:arc4random()%250/255.0 alpha:1.0];
+    JGZImageBrowserModel *model=self.LocalImageArray[indexPath.item];
+    cell.imageview.image=model.image;
+    cell.delegate=self;
+    //cell.backgroundColor=[UIColor colorWithRed:arc4random()%250/255.0 green:arc4random()%250/255.0 blue:arc4random()%250/255.0 alpha:1.0];
     return cell;
 }
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"1--%f",scrollView.contentOffset.x);
+    self.CurrentIndex=scrollView.contentOffset.x/[UIScreen mainScreen].bounds.size.width;
+}
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    NSLog(@"2--%f",scrollView.contentOffset.x);
+}
+-(void)setCurrentIndex:(NSInteger)CurrentIndex{
+    _CurrentIndex=CurrentIndex;
+    [self scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:CurrentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+}
+#pragma mark--JGZImageBrowserViewCellDelegate
+-(void)imageDidTap{
+    if ([self.BrowserViewDelegate respondsToSelector:@selector(imageDidClickCurrentIndex:)]) {
+        [self.BrowserViewDelegate imageDidClickCurrentIndex:self.CurrentIndex];
+    }
+}
 @end

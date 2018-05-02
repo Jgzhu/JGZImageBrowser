@@ -19,6 +19,7 @@
     if (!_ImageScrollView) {
         _ImageScrollView=[[UIScrollView alloc] init];
         _ImageScrollView.frame=[UIScreen mainScreen].bounds;
+        _ImageScrollView.backgroundColor=[UIColor clearColor];
         _ImageScrollView.delegate=self;
         _ImageScrollView.pagingEnabled=NO;
         _ImageScrollView.userInteractionEnabled=YES;
@@ -28,17 +29,24 @@
         _ImageScrollView.alwaysBounceHorizontal = YES;
         _ImageScrollView.alwaysBounceVertical = YES;
         _ImageScrollView.decelerationRate = UIScrollViewDecelerationRateFast;
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageclicked)];
+        [_ImageScrollView addGestureRecognizer:tap];
        // _ImageScrollView.bounces=NO;
          _ImageScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     return _ImageScrollView;
+}
+-(void)imageclicked{
+    if ([self.delegate respondsToSelector:@selector(imageDidTap)]) {
+        [self.delegate imageDidTap];
+    }
 }
 - (UIImageView *)imageview {
     if (!_imageview) {
         _imageview = [UIImageView new];
         _imageview.frame=[UIScreen mainScreen].bounds;
         _imageview.contentMode = UIViewContentModeScaleAspectFit;
-        //_imageview.userInteractionEnabled=NO;
+        _imageview.userInteractionEnabled=NO;
     }
     return _imageview;
 }
@@ -46,6 +54,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.userInteractionEnabled=YES;
+        self.backgroundColor=[UIColor clearColor];
         [self addSubview:self.ImageScrollView];
         [self.ImageScrollView addSubview:self.imageview];
     }

@@ -28,6 +28,7 @@
 		6F6137E120946B1E00650CBF /* localImage6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6F6137D720946B1E00650CBF /* localImage6.jpeg */; };
 		6F6137E220946B1E00650CBF /* localImage7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6F6137D820946B1E00650CBF /* localImage7.jpeg */; };
 		6F6137E320946B1E00650CBF /* localImage8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6F6137D920946B1E00650CBF /* localImage8.jpeg */; };
+		6F71B2C4209968870042A7F2 /* JGZImageBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F71B2C3209968870042A7F2 /* JGZImageBrowserModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		6F6137D720946B1E00650CBF /* localImage6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = localImage6.jpeg; sourceTree = "<group>"; };
 		6F6137D820946B1E00650CBF /* localImage7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = localImage7.jpeg; sourceTree = "<group>"; };
 		6F6137D920946B1E00650CBF /* localImage8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = localImage8.jpeg; sourceTree = "<group>"; };
+		6F71B2C2209968870042A7F2 /* JGZImageBrowserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGZImageBrowserModel.h; sourceTree = "<group>"; };
+		6F71B2C3209968870042A7F2 /* JGZImageBrowserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGZImageBrowserModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 			children = (
 				6F6137C0209459AA00650CBF /* JGZImageBrowser.h */,
 				6F6137C1209459AA00650CBF /* JGZImageBrowser.m */,
+				6F71B2C2209968870042A7F2 /* JGZImageBrowserModel.h */,
+				6F71B2C3209968870042A7F2 /* JGZImageBrowserModel.m */,
 				6F6137C620945F0F00650CBF /* JGZImageBrowserView.h */,
 				6F6137C720945F0F00650CBF /* JGZImageBrowserView.m */,
 				6F6137C9209461BB00650CBF /* JGZImageBrowserViewLayout.h */,
@@ -223,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6137AE2094591E00650CBF /* ViewController.m in Sources */,
+				6F71B2C4209968870042A7F2 /* JGZImageBrowserModel.m in Sources */,
 				6F6137CE2094633F00650CBF /* JGZImageBrowserViewCell.m in Sources */,
 				6F6137C820945F0F00650CBF /* JGZImageBrowserView.m in Sources */,
 				6F6137C520945D3300650CBF /* JGZImageTool.m in Sources */,

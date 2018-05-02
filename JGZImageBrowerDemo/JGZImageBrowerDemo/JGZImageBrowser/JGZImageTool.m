@@ -15,7 +15,7 @@
     UIViewController *topController = nil;
     
     UIWindow *window = [self getNormalWindow];
-    
+   
     UIView *frontView = [[window subviews] objectAtIndex:0];
     id nextResponder = [frontView nextResponder];
     

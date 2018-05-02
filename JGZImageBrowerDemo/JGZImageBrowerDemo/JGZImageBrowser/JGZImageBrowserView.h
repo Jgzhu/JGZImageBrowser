@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JGZImageBrowserView : UICollectionView
+@protocol JGZImageBrowserViewDelegate<NSObject>
+-(void)imageDidClickCurrentIndex:(NSInteger)CurrentIndex;
+@end
 
+@interface JGZImageBrowserView : UICollectionView
+@property (nonatomic,weak)NSArray *LocalImageArray;
+@property (nonatomic,assign)NSInteger CurrentIndex;
+@property (nonatomic ,weak)id<JGZImageBrowserViewDelegate>BrowserViewDelegate;
 @end
