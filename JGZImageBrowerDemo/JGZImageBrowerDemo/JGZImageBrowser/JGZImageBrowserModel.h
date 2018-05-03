@@ -9,9 +9,9 @@
 #import "JGZImageTool.h"
 
 typedef NS_ENUM(NSUInteger, LoadState) {
-    isLoading,
-    isLoadFailed,
-    isLoadSuccess,
+    Loading,
+    LoadFailed,
+    LoadSuccess,
 };
 
 @interface JGZImageBrowserModel : NSObject

@@ -46,7 +46,8 @@ static NSString *const JGZImageBrowserViewCellIdentifier=@"JGZImageBrowserViewCe
     JGZImageBrowserViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:JGZImageBrowserViewCellIdentifier forIndexPath:indexPath];
     [cell resetUI];
     JGZImageBrowserModel *model=self.LocalImageArray[indexPath.item];
-    cell.imageview.image=model.image;
+    //cell.imageview.image=model.image;
+    cell.model=model;
     cell.delegate=self;
     //cell.backgroundColor=[UIColor colorWithRed:arc4random()%250/255.0 green:arc4random()%250/255.0 blue:arc4random()%250/255.0 alpha:1.0];
     return cell;

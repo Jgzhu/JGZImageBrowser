@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JGZImageBrowserModel;
+
 
 @protocol JGZImageBrowserViewCellDelegate<NSObject>
 -(void)imageDidTap;
@@ -15,6 +17,7 @@
 
 @interface JGZImageBrowserViewCell : UICollectionViewCell
 @property (nonatomic,weak)id<JGZImageBrowserViewCellDelegate>delegate;
-@property (nonatomic,strong)UIImageView *imageview;
+
+@property (nonatomic,weak)JGZImageBrowserModel *model;
 -(void)resetUI;
 @end

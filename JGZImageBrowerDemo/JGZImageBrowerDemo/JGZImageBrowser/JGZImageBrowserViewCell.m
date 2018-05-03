@@ -7,10 +7,12 @@
 //
 
 #import "JGZImageBrowserViewCell.h"
-
+#import "JGZImageBrowserModel.h"
+#import "JGZ_SD_WebImage.h"
 @interface JGZImageBrowserViewCell()<UIScrollViewDelegate>
 @property (nonatomic,strong)UIScrollView *ImageScrollView;
 @property (nonatomic)BOOL isZooming;
+@property (nonatomic,strong)UIImageView *imageview;
 @end
 
 @implementation JGZImageBrowserViewCell
@@ -59,6 +61,38 @@
         [self.ImageScrollView addSubview:self.imageview];
     }
     return self;
+}
+-(void)setModel:(JGZImageBrowserModel *)model{
+    _model=model;
+    __weak typeof(self) weakself=self;
+    if (model.url) {
+        if (model.loadstate==Loading) {
+            //正在加载
+          self.imageview.image=model.image;
+            [JGZ_SD_WebImage DownImageWithUrl:model.url progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                
+            } success:^(UIImage *image, BOOL isfinished) {
+                __strong typeof(weakself) strongself=weakself;
+                strongself.imageview.image=image;
+            } failure:^(UIImage *image, BOOL isfinished) {
+                
+            }];
+        }else if (model.loadstate==LoadSuccess){
+            //加载成功
+            [JGZ_SD_WebImage DownImageWithUrl:model.url progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                
+            } success:^(UIImage *image, BOOL isfinished) {
+                 __strong typeof(weakself) strongself=weakself;
+                strongself.imageview.image=image;
+            } failure:^(UIImage *image, BOOL isfinished) {
+                
+            }];
+        }else{
+            //加载失败
+        }
+    }else{
+       self.imageview.image=model.image;
+    }
 }
 -(void)resetUI{
     if (_ImageScrollView !=nil) {
